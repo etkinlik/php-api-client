@@ -1,6 +1,6 @@
 <?php namespace EtkinlikApi\Model;
 
-class Tur
+class Ilce
 {
     /**
      * @var int
@@ -13,9 +13,9 @@ class Tur
     private $adi;
 
     /**
-     * @var string
+     * @var Sehir
      */
-    private $radi;
+    private $sehir;
 
     /**
      * @param \stdClass $item
@@ -24,7 +24,7 @@ class Tur
     {
         $this->id = $item->id;
         $this->adi = $item->adi;
-        $this->radi = $item->radi;
+        $this->sehir = new Sehir($item->sehir);
     }
 
     /**
@@ -44,10 +44,10 @@ class Tur
     }
 
     /**
-     * @return mixed
+     * @return Sehir
      */
-    public function getRadi()
+    public function getSehir()
     {
-        return $this->radi;
+        return $this->sehir;
     }
 }

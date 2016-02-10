@@ -2,11 +2,13 @@
 
 use EtkinlikApi\Container;
 use EtkinlikApi\Exception\BilinmeyenDurumException;
+use EtkinlikApi\Exception\KayitBulunamadiException;
 use EtkinlikApi\Exception\YetkilendirmeException;
-use EtkinlikApi\Model\Tur;
+use EtkinlikApi\Model\Semt;
+use Exception;
 use Httpful\Response;
 
-class TurService
+class SemtService
 {
     /**
      * @var Container
@@ -22,33 +24,38 @@ class TurService
     }
 
     /**
-     * @return Tur[]
+     * @param int $ilceId
+     * @return Semt[]
+     *
+     * @throws Exception
      * @throws YetkilendirmeException
      * @throws BilinmeyenDurumException
      */
-    public function getListe()
+    public function getListeByIlceId($ilceId)
     {
         // response alalım
-        $response = $this->container->apiService->get('/turler');
+        $response = $this->container->apiService->get('/ilce/' . $ilceId . '/semtler');
 
         // durum koduna göre işlem yapalım
         switch ($response->code) {
 
             case 200:
 
-                /** @var Tur[] $turler */
-                $turler = [];
+                /** @var Semt[] $semtler */
+                $semtler = [];
 
                 // body üzerinde dönelim
                 foreach ($response->body as $item) {
-                    $turler[] = new Tur($item);
+                    $semtler[] = new Semt($item);
                 }
 
-                return $turler;
+                return $semtler;
 
                 break;
 
+            case 400: throw new Exception($response->body->mesaj); break;
             case 401: throw new YetkilendirmeException($response->body->mesaj); break;
+            case 404: throw new KayitBulunamadiException($response->body->mesaj); break;
             default: throw new BilinmeyenDurumException($response);
         }
     }

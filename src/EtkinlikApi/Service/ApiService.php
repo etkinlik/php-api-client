@@ -20,15 +20,15 @@ class ApiService
     }
 
     /**
-     * @param string $adres
+     * @param string $address
+     * @param array $body
      * @return \Httpful\Response
      */
-    public function get($adres)
+    public function get($address, $body = '')
     {
-        return Request::get('https://etkinlik.io/api/v1' . $adres)
+        return Request::get('https://etkinlik.io/api/v1' . $address, Mime::JSON)
             ->addHeader('X-ETKINLIK-TOKEN', '33ebd45fa0b8518280a816f76368c11f')
-            ->sendsType(Mime::JSON)
-            ->expectsType(Mime::JSON)
+            ->body($body)
             ->send();
     }
 }

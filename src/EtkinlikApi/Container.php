@@ -1,11 +1,12 @@
 <?php namespace EtkinlikApi;
 
 use EtkinlikApi\Service\ApiService;
+use EtkinlikApi\Service\KategoriService;
 use EtkinlikApi\Service\TurService;
 use Pimple\Container as PimpleContainer;
 
 /**
- * @property TurService turService
+ * @property TurService $turService
  * @property ApiService apiService
  */
 class Container extends PimpleContainer
@@ -14,12 +15,16 @@ class Container extends PimpleContainer
     {
         parent::__construct($values);
 
+        $this['apiService'] = function($c) {
+            return new ApiService($c);
+        };
+
         $this['turService'] = function($c) {
             return new TurService($c);
         };
 
-        $this['apiService'] = function($c) {
-            return new ApiService($c);
+        $this['kategoriService'] = function($c) {
+            return new KategoriService($c);
         };
     }
 

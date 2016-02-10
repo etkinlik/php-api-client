@@ -3,10 +3,10 @@
 use EtkinlikApi\Container;
 use EtkinlikApi\Exception\BilinmeyenDurumException;
 use EtkinlikApi\Exception\YetkilendirmeException;
-use EtkinlikApi\Model\Tur;
+use EtkinlikApi\Model\Sehir;
 use Httpful\Response;
 
-class TurService
+class SehirService
 {
     /**
      * @var Container
@@ -22,29 +22,29 @@ class TurService
     }
 
     /**
-     * @return Tur[]
+     * @return Sehir[]
      * @throws YetkilendirmeException
      * @throws BilinmeyenDurumException
      */
     public function getListe()
     {
         // response alalım
-        $response = $this->container->apiService->get('/turler');
+        $response = $this->container->apiService->get('/sehirler');
 
         // durum koduna göre işlem yapalım
         switch ($response->code) {
 
             case 200:
 
-                /** @var Tur[] $turler */
-                $turler = [];
+                /** @var Sehir[] $sehirler */
+                $sehirler = [];
 
                 // body üzerinde dönelim
                 foreach ($response->body as $item) {
-                    $turler[] = new Tur($item);
+                    $sehirler[] = new Sehir($item);
                 }
 
-                return $turler;
+                return $sehirler;
 
                 break;
 

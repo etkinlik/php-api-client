@@ -1,10 +1,13 @@
 <?php namespace EtkinlikApi;
 use EtkinlikApi\Service\ApiService;
+use EtkinlikApi\Service\KategoriService;
 use EtkinlikApi\Service\TurService;
 
 /**
- * @property TurService turService
  * @property ApiService apiService
+ *
+ * @property TurService $turService
+ * @property KategoriService kategoriService
  */
 class ApiClient
 {

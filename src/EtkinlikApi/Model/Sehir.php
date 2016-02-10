@@ -1,6 +1,6 @@
 <?php namespace EtkinlikApi\Model;
 
-class Tur
+class Sehir
 {
     /**
      * @var int
