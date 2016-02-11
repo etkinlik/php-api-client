@@ -1,4 +1,6 @@
 {
+  "name": "etkinlik/php-api-client",
+  "description": "Etkinlik.io'da yer alan etkinlikleri PHP kullanarak elde etmek için kullanılır.",
   "require": {
     "nategood/httpful": "*",
     "pimple/pimple": "^3.0",
