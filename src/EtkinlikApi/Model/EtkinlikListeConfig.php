@@ -33,18 +33,18 @@ class EtkinlikListeConfig
     private $take;
 
     /**
-     * @return array
+     * @return string
      */
-    public function toArray()
+    public function serialize()
     {
-        return [
-            'formatId' => $this->formatId,
-            'categoryId' => $this->categoryId,
-            'venueId' => $this->venueId,
-            'cityId' => $this->cityId,
-            'page' => $this->page,
-            'take' => $this->take
-        ];
+        return json_encode([
+            'turId' => $this->formatId,
+            'kategoriId' => $this->categoryId,
+            'mekanId' => $this->venueId,
+            'sehirId' => $this->cityId,
+            'sayfa' => $this->page,
+            'adet' => $this->take
+        ]);
     }
 
     /**

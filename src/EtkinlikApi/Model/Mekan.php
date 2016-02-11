@@ -40,6 +40,6 @@ class Mekan
 
         $this->ilce = new Ilce($item->ilce);
 
-        $this->semt = empty($item->ilce) ? null : new Semt($item->semt);
+        $this->semt = empty($item->semt) ? null : new Semt($item->semt);
     }
 }

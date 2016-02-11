@@ -7,6 +7,7 @@ use EtkinlikApi\Exception\MukerrerKayitException;
 use EtkinlikApi\Exception\YetkilendirmeException;
 use EtkinlikApi\Model\Etkinlik;
 use EtkinlikApi\Model\EtkinlikListeConfig;
+use EtkinlikApi\Model\EtkinlikPaged;
 use Exception;
 
 class EtkinlikService
@@ -30,28 +31,15 @@ class EtkinlikService
      * @throws YetkilendirmeException
      * @throws BilinmeyenDurumException
      */
-    public function getListe(EtkinlikListeConfig $params)
+    public function getListe(EtkinlikListeConfig $params = null)
     {
         // response alalım
-        $response = $this->container->apiService->get('/etkinlikler', $params->toArray());
+        $response = $this->container->apiService->get('/etkinlikler', is_null($params) ? [] : $params->serialize());
 
         // durum koduna göre işlem yapalım
         switch ($response->code) {
 
-            case 200:
-
-                /** @var Etkinlik[] $etinlikler */
-                $etinlikler = [];
-
-                // body üzerinde dönelim
-                foreach ($response->body as $item) {
-                    $etinlikler[] = new Etkinlik($item);
-                }
-
-                return $etinlikler;
-
-                break;
-
+            case 200: return (new EtkinlikPaged($response->body))->getEtkinlikler(); break;
             case 401: throw new YetkilendirmeException($response->body->mesaj); break;
             default: throw new BilinmeyenDurumException($response);
         }
