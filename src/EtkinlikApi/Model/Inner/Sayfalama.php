@@ -1,4 +1,4 @@
-<?php namespace EtkinlikApi\Model;
+<?php namespace EtkinlikApi\Model\Inner;
 
 class Sayfalama
 {

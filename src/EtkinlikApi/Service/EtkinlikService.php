@@ -1,13 +1,13 @@
 <?php namespace EtkinlikApi\Service;
 
 use EtkinlikApi\Container;
-use EtkinlikApi\Exception\BilinmeyenDurumException;
-use EtkinlikApi\Exception\KayitBulunamadiException;
-use EtkinlikApi\Exception\MukerrerKayitException;
-use EtkinlikApi\Exception\YetkilendirmeException;
+use EtkinlikApi\Exception\UnknownException;
+use EtkinlikApi\Exception\NotFoundException;
+use EtkinlikApi\Exception\MovedException;
+use EtkinlikApi\Exception\UnauthorizedException;
+use EtkinlikApi\Model\Config\EtkinlikListeConfig;
 use EtkinlikApi\Model\Etkinlik;
-use EtkinlikApi\Model\EtkinlikListeConfig;
-use EtkinlikApi\Model\EtkinlikPaged;
+use EtkinlikApi\Model\Response\EtkinlikPagedResponse;
 use Exception;
 
 class EtkinlikService
@@ -28,8 +28,8 @@ class EtkinlikService
     /**
      * @param EtkinlikListeConfig $params
      * @return Etkinlik[]
-     * @throws YetkilendirmeException
-     * @throws BilinmeyenDurumException
+     * @throws UnauthorizedException
+     * @throws UnknownException
      */
     public function getListe(EtkinlikListeConfig $params = null)
     {
@@ -39,10 +39,11 @@ class EtkinlikService
         // durum koduna göre işlem yapalım
         switch ($response->code) {
 
-            case 200: return (new EtkinlikPaged($response->body))->getEtkinlikler(); break;
-            case 401: throw new YetkilendirmeException($response->body->mesaj); break;
-            default: throw new BilinmeyenDurumException($response);
+            case 200: return (new EtkinlikPagedResponse($response->body))->getEtkinlikler();
+            case 401: throw new UnauthorizedException($response->body->mesaj);
         }
+
+        throw new UnknownException($response);
     }
 
     /**
@@ -51,10 +52,10 @@ class EtkinlikService
      * @return Etkinlik
      *
      * @throws Exception
-     * @throws KayitBulunamadiException
-     * @throws MukerrerKayitException
-     * @throws YetkilendirmeException
-     * @throws BilinmeyenDurumException
+     * @throws NotFoundException
+     * @throws MovedException
+     * @throws UnauthorizedException
+     * @throws UnknownException
      */
     public function getById($id)
     {
@@ -64,12 +65,13 @@ class EtkinlikService
         // durum koduna göre işlem yapalım
         switch ($response->code) {
 
-            case 200: return new Etkinlik($response->body); break;
-            case 301: throw new MukerrerKayitException($response->body->mesaj, $response->body->yeniId); break;
-            case 400: throw new Exception($response->body->mesaj); break;
-            case 401: throw new YetkilendirmeException($response->body->mesaj); break;
-            case 404: throw new KayitBulunamadiException($response->body->mesaj); break;
-            default: throw new BilinmeyenDurumException($response);
+            case 200: return new Etkinlik($response->body);
+            case 301: throw new MovedException($response->body->mesaj, $response->body->yeniId);
+            case 400: throw new Exception($response->body->mesaj);
+            case 401: throw new UnauthorizedException($response->body->mesaj);
+            case 404: throw new NotFoundException($response->body->mesaj);
         }
+
+        throw new UnknownException($response);
     }
 }

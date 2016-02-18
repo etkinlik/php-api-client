@@ -2,7 +2,7 @@
 
 use Httpful\Response;
 
-class BilinmeyenDurumException extends \RuntimeException
+class UnknownException extends \RuntimeException
 {
     /**
      * @var Response

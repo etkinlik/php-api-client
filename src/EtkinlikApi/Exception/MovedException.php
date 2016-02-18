@@ -1,6 +1,6 @@
 <?php namespace EtkinlikApi\Exception;
 
-class MukerrerKayitException extends \Exception
+class MovedException extends \Exception
 {
     /**
      * @var int|null

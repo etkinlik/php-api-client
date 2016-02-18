@@ -1,8 +1,8 @@
 <?php namespace EtkinlikApi\Service;
 
 use EtkinlikApi\Container;
-use EtkinlikApi\Exception\BilinmeyenDurumException;
-use EtkinlikApi\Exception\YetkilendirmeException;
+use EtkinlikApi\Exception\UnknownException;
+use EtkinlikApi\Exception\UnauthorizedException;
 use EtkinlikApi\Model\Tur;
 use Httpful\Response;
 
@@ -23,8 +23,8 @@ class TurService
 
     /**
      * @return Tur[]
-     * @throws YetkilendirmeException
-     * @throws BilinmeyenDurumException
+     * @throws UnauthorizedException
+     * @throws UnknownException
      */
     public function getListe()
     {
@@ -48,8 +48,8 @@ class TurService
 
                 break;
 
-            case 401: throw new YetkilendirmeException($response->body->mesaj); break;
-            default: throw new BilinmeyenDurumException($response);
+            case 401: throw new UnauthorizedException($response->body->mesaj); break;
+            default: throw new UnknownException($response);
         }
     }
 }

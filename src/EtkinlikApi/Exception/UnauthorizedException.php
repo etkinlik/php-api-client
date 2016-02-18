@@ -2,7 +2,7 @@
 
 use Exception;
 
-class YetkilendirmeException extends Exception
+class UnauthorizedException extends Exception
 {
     public function __construct($message)
     {

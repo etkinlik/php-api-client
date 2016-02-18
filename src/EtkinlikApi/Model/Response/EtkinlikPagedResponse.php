@@ -1,8 +1,9 @@
-<?php namespace EtkinlikApi\Model;
+<?php namespace EtkinlikApi\Model\Response;
 
-use EtkinlikApi\Model\Soyut\ListePaged;
+use EtkinlikApi\Model\Etkinlik;
+use EtkinlikApi\Model\Soyut\ListePagedResponse;
 
-class EtkinlikPaged extends ListePaged
+class EtkinlikPagedResponse extends ListePagedResponse
 {
     /**
      * @param \stdClass $item

@@ -1,8 +1,8 @@
 <?php namespace EtkinlikApi\Model\Soyut;
 
-use EtkinlikApi\Model\Sayfalama;
+use EtkinlikApi\Model\Inner\Sayfalama;
 
-abstract class ListePaged
+abstract class ListePagedResponse
 {
     /**
      * @var Sayfalama
