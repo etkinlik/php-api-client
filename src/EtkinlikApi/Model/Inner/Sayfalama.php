@@ -34,6 +34,8 @@ class Sayfalama
     }
 
     /**
+     * Sayfalama'dan bağımsız olarak toplamda kaç adet sonuç olduğunu gösterir.
+     *
      * @return int
      */
     public function getToplamKayit()
@@ -42,6 +44,8 @@ class Sayfalama
     }
 
     /**
+     * Tüm sonuçları almak için toplamda kaç sayfa sorgulanması gerektiğini gösterir.
+     *
      * @return int
      */
     public function getToplamSayfa()
@@ -50,6 +54,8 @@ class Sayfalama
     }
 
     /**
+     * Bulunan sayfa sayısı, istek sırasında gönderilen sayfa bilgisini içerir.
+     *
      * @return int
      */
     public function getSayfa()
@@ -58,6 +64,8 @@ class Sayfalama
     }
 
     /**
+     * Dönen kayıt sayısı, istek sırasında gönderilen adet bilgisini içerir.
+     *
      * @return int
      */
     public function getAdet()

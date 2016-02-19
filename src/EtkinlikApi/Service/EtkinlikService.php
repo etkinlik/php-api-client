@@ -1,6 +1,7 @@
 <?php namespace EtkinlikApi\Service;
 
 use EtkinlikApi\Container;
+use EtkinlikApi\Exception\BadRequestException;
 use EtkinlikApi\Exception\UnknownException;
 use EtkinlikApi\Exception\NotFoundException;
 use EtkinlikApi\Exception\MovedException;
@@ -8,7 +9,6 @@ use EtkinlikApi\Exception\UnauthorizedException;
 use EtkinlikApi\Model\Config\EtkinlikListeConfig;
 use EtkinlikApi\Model\Etkinlik;
 use EtkinlikApi\Model\Response\EtkinlikPagedResponse;
-use Exception;
 
 class EtkinlikService
 {
@@ -27,7 +27,8 @@ class EtkinlikService
 
     /**
      * @param EtkinlikListeConfig $params
-     * @return Etkinlik[]
+     * @return EtkinlikPagedResponse
+     *
      * @throws UnauthorizedException
      * @throws UnknownException
      */
@@ -39,7 +40,7 @@ class EtkinlikService
         // durum koduna göre işlem yapalım
         switch ($response->code) {
 
-            case 200: return (new EtkinlikPagedResponse($response->body))->getEtkinlikler();
+            case 200: return new EtkinlikPagedResponse($response->body);
             case 401: throw new UnauthorizedException($response->body->mesaj);
         }
 
@@ -51,7 +52,7 @@ class EtkinlikService
      *
      * @return Etkinlik
      *
-     * @throws Exception
+     * @throws BadRequestException
      * @throws NotFoundException
      * @throws MovedException
      * @throws UnauthorizedException
@@ -67,7 +68,7 @@ class EtkinlikService
 
             case 200: return new Etkinlik($response->body);
             case 301: throw new MovedException($response->body->mesaj, $response->body->yeniId);
-            case 400: throw new Exception($response->body->mesaj);
+            case 400: throw new BadRequestException($response->body->mesaj);
             case 401: throw new UnauthorizedException($response->body->mesaj);
             case 404: throw new NotFoundException($response->body->mesaj);
         }

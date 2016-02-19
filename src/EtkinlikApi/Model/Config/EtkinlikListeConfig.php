@@ -3,24 +3,24 @@
 class EtkinlikListeConfig
 {
     /**
-     * @var int
+     * @var array
      */
-    private $turId;
+    private $turIds = [];
 
     /**
-     * @var int
+     * @var array
      */
-    private $kategoriId;
+    private $kategoriIds = [];
 
     /**
-     * @var int
+     * @var array
      */
-    private $mekanId;
+    private $mekanIds = [];
 
     /**
-     * @var int
+     * @var array
      */
-    private $sehirId;
+    private $sehirIds = [];
 
     /**
      * @var int
@@ -38,10 +38,10 @@ class EtkinlikListeConfig
     public function serialize()
     {
         return json_encode([
-            'turId' => $this->turId,
-            'kategoriId' => $this->kategoriId,
-            'mekanId' => $this->mekanId,
-            'sehirId' => $this->sehirId,
+            'turIds' => implode(',', $this->turIds),
+            'kategoriIds' => implode(',', $this->kategoriIds),
+            'mekanIds' => implode(',', $this->mekanIds),
+            'sehirIds' => implode(',', $this->sehirIds),
             'sayfa' => $this->sayfa,
             'adet' => $this->adet
         ]);
@@ -51,9 +51,9 @@ class EtkinlikListeConfig
      * @param int $turId
      * @return $this
      */
-    public function setTurId($turId)
+    public function addTurId($turId)
     {
-        $this->turId = $turId;
+        $this->turIds[] = $turId;
         return $this;
     }
 
@@ -61,9 +61,9 @@ class EtkinlikListeConfig
      * @param int $kategoriId
      * @return $this
      */
-    public function setKategoriId($kategoriId)
+    public function addKategoriId($kategoriId)
     {
-        $this->kategoriId = $kategoriId;
+        $this->kategoriIds[] = $kategoriId;
         return $this;
     }
 
@@ -71,9 +71,9 @@ class EtkinlikListeConfig
      * @param int $mekanId
      * @return $this
      */
-    public function setMekanId($mekanId)
+    public function addMekanId($mekanId)
     {
-        $this->mekanId = $mekanId;
+        $this->mekanIds[] = $mekanId;
         return $this;
     }
 
@@ -81,9 +81,9 @@ class EtkinlikListeConfig
      * @param int $sehirId
      * @return $this
      */
-    public function setSehirId($sehirId)
+    public function addSehirId($sehirId)
     {
-        $this->sehirId = $sehirId;
+        $this->sehirIds[] = $sehirId;
         return $this;
     }
 
