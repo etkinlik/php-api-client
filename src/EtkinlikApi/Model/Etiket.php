@@ -28,7 +28,7 @@ class Etiket
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -36,7 +36,7 @@ class Etiket
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAdi()
     {
@@ -44,7 +44,7 @@ class Etiket
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getRadi()
     {

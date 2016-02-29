@@ -28,7 +28,7 @@ class Tur
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -36,7 +36,7 @@ class Tur
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAdi()
     {
@@ -44,7 +44,7 @@ class Tur
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getRadi()
     {

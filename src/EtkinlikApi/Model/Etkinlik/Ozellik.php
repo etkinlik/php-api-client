@@ -2,14 +2,49 @@
 
 class Ozellik
 {
+    /**
+     * @var string
+     */
     private $telefon;
+
+    /**
+     * @var string
+     */
     private $mail;
+
+    /**
+     * @var string
+     */
     private $facebook;
+
+    /**
+     * @var string
+     */
     private $twitter;
+
+    /**
+     * @var string
+     */
     private $hashtag;
+
+    /**
+     * @var string
+     */
     private $websitesi;
+
+    /**
+     * @var string
+     */
     private $canliyayin;
+
+    /**
+     * @var string
+     */
     private $android;
+
+    /**
+     * @var string
+     */
     private $ios;
 
     /**
@@ -29,7 +64,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTelefon()
     {
@@ -37,7 +72,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getMail()
     {
@@ -45,7 +80,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFacebook()
     {
@@ -53,7 +88,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTwitter()
     {
@@ -61,7 +96,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getHashtag()
     {
@@ -69,7 +104,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getWebsitesi()
     {
@@ -77,7 +112,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCanliyayin()
     {
@@ -85,7 +120,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAndroid()
     {
@@ -93,7 +128,7 @@ class Ozellik
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIos()
     {

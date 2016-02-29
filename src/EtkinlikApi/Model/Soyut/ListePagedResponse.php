@@ -20,6 +20,7 @@ abstract class ListePagedResponse
      */
     public function __construct($item, $class)
     {
+        // sayfalama oluşturalım
         $this->sayfalama = new Sayfalama($item->sayfalama);
 
         // kayıtlar üzerinde dönelim

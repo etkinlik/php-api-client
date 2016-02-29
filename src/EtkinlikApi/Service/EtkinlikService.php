@@ -2,6 +2,7 @@
 
 use EtkinlikApi\Container;
 use EtkinlikApi\Exception\BadRequestException;
+use EtkinlikApi\Exception\GoneException;
 use EtkinlikApi\Exception\UnknownException;
 use EtkinlikApi\Exception\NotFoundException;
 use EtkinlikApi\Exception\MovedException;
@@ -71,6 +72,7 @@ class EtkinlikService
             case 400: throw new BadRequestException($response->body->mesaj);
             case 401: throw new UnauthorizedException($response->body->mesaj);
             case 404: throw new NotFoundException($response->body->mesaj);
+            case 410: throw new GoneException($response->body->mesaj);
         }
 
         throw new UnknownException($response);

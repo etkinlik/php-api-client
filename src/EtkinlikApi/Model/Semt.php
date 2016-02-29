@@ -22,7 +22,7 @@ class Semt
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -30,7 +30,7 @@ class Semt
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAdi()
     {

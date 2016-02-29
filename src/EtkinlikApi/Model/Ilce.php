@@ -28,7 +28,7 @@ class Ilce
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -36,7 +36,7 @@ class Ilce
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAdi()
     {
@@ -44,7 +44,7 @@ class Ilce
     }
 
     /**
-     * @return Sehir
+     * @return string
      */
     public function getSehir()
     {
