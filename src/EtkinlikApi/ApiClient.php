@@ -1,8 +1,10 @@
 <?php namespace EtkinlikApi;
+
 use EtkinlikApi\Service\ApiService;
 use EtkinlikApi\Service\EtkinlikService;
 use EtkinlikApi\Service\IlceService;
 use EtkinlikApi\Service\KategoriService;
+use EtkinlikApi\Service\MekanService;
 use EtkinlikApi\Service\SehirService;
 use EtkinlikApi\Service\SemtService;
 use EtkinlikApi\Service\TurService;
@@ -11,6 +13,7 @@ use EtkinlikApi\Service\TurService;
  * @property ApiService apiService
  *
  * @property EtkinlikService etkinlikService
+ * @property MekanService mekanService
  * @property IlceService ilceService
  * @property KategoriService kategoriService
  * @property SehirService sehirService

@@ -4,6 +4,7 @@ use EtkinlikApi\Service\ApiService;
 use EtkinlikApi\Service\EtkinlikService;
 use EtkinlikApi\Service\IlceService;
 use EtkinlikApi\Service\KategoriService;
+use EtkinlikApi\Service\MekanService;
 use EtkinlikApi\Service\SehirService;
 use EtkinlikApi\Service\SemtService;
 use EtkinlikApi\Service\TurService;
@@ -31,6 +32,10 @@ class Container extends PimpleContainer
 
         $this['etkinlikService'] = function($c) {
             return new EtkinlikService($c);
+        };
+
+        $this['mekanService'] = function($c) {
+            return new MekanService($c);
         };
 
         $this['ilceService'] = function($c) {
