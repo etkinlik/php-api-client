@@ -28,9 +28,9 @@ class Sayfalama
     public function __construct($item)
     {
         $this->toplamKayit = $item->toplamKayit;
-        $this->toplamSayfa = $item->sayfa;
-        $this->sayfa = $item->adet;
-        $this->adet = $item->toplamSayfa;
+        $this->toplamSayfa = $item->toplamSayfa;
+        $this->sayfa = $item->sayfa;
+        $this->adet = $item->adet;
     }
 
     /**
