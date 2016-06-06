@@ -41,9 +41,21 @@ class Etkinlik
     private $bitis;
 
     /**
+     * @deprecated use ucretli_mi
+     *
      * @var bool
      */
     private $ucretliMi;
+
+    /**
+     * @var bool
+     */
+    private $ucretli_mi;
+
+    /**
+     * @var string
+     */
+    private $afis_url;
 
     /**
      * @var int
@@ -88,6 +100,8 @@ class Etkinlik
         $this->baslangic = Carbon::createFromFormat(Carbon::ISO8601, $item->baslangic);
         $this->bitis = Carbon::createFromFormat(Carbon::ISO8601, $item->bitis);
         $this->ucretliMi = $item->ucretliMi;
+        $this->ucretli_mi = $item->ucretli_mi;
+        $this->afis_url = $item->afis_url;
         $this->durum = $item->durum;
 
         $this->ozellik = new Ozellik($item->ozellik);
@@ -162,11 +176,29 @@ class Etkinlik
     }
 
     /**
-     * @return boolean
+     * @deprecated use isUcretli
+     *
+     * @return bool
      */
     public function isUcretliMi()
     {
         return $this->ucretliMi;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUcretli()
+    {
+        return $this->ucretli_mi;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAfisUrl()
+    {
+        return $this->afis_url;
     }
 
     /**
