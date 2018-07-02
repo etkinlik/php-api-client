@@ -2,9 +2,10 @@
   "name": "etkinlik/php-api-client",
   "description": "Etkinlik.io'da yer alan etkinlikleri PHP kullanarak elde etmek için kullanılır.",
   "require": {
-    "nategood/httpful": "*",
-    "pimple/pimple": "^3.0",
-    "nesbot/carbon": "^1.21"
+    "nesbot/carbon": "1.31.*",
+    "guzzlehttp/guzzle": "6.3.*",
+    "php-di/php-di": "5.4.*",
+    "doctrine/annotations": "1.4.*"
   },
   "require-dev": {
     "mockery/mockery": "~0.9",
@@ -12,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "EtkinlikApi\\": "src/EtkinlikApi"
+      "EtkinlikApi\\": "src"
     }
   }
 }

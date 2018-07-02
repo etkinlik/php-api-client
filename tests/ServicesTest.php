@@ -4,26 +4,23 @@ class ServicesTest extends PHPUnit_Framework_TestCase
 {
     public function testTurler()
     {
-        $client = new \EtkinlikApi\ApiClient('X-ETKINLIK-TOKEN');
+        $client = new \EtkinlikApi\ApiClient('token buraya gelecek');
 
-        $etkinlikler = $client->etkinlikService->getListe(
-            (new \EtkinlikApi\Model\Config\EtkinlikListeConfig())
-                ->addKategoriId(456)
-                ->addKategoriId(54)
-                ->setSayfa(1)
+        $events = $client->event->getItems(
+            (new \EtkinlikApi\Model\Config\EventsConfig())
+                ->addCategoryId(4015)
         );
-        $turler = $client->turService->getListe();
-        $kategoriler = $client->kategoriService->getListe();
+        $formats = $client->format->getItems();
+        $categories = $client->category->getListe();
 
-        $mekanlar = $client->mekanService->getListe(
-            (new \EtkinlikApi\Model\Config\MekanListeConfig())
-                ->setSehirId(7)
-                ->setSayfa(1)
+        $venues = $client->venue->getItems(
+            (new \EtkinlikApi\Model\Config\VenuesConfig())
+                ->addCityId(7)
         );
 
-        $this->assertEquals(39, $etkinlikler->getSayfalama()->getToplamKayit());
-        $this->assertEquals(21, count($turler));
-        $this->assertEquals(49, count($kategoriler));
-        $this->assertEquals(194, $mekanlar->getSayfalama()->getToplamKayit());
+        $this->assertEquals(122, $events->getMeta()->getTotalCount());
+        $this->assertEquals(22, count($formats));
+        $this->assertEquals(51, count($categories));
+        $this->assertEquals(819, $venues->getMeta()->getTotalCount());
     }
 }
