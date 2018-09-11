@@ -5,7 +5,8 @@
     "nesbot/carbon": "1.31.*",
     "guzzlehttp/guzzle": "6.3.*",
     "php-di/php-di": "5.4.*",
-    "doctrine/annotations": "1.4.*"
+    "doctrine/annotations": "1.4.*",
+    "ext-json": "*"
   },
   "require-dev": {
     "mockery/mockery": "~0.9",

@@ -143,7 +143,7 @@ class Event
 
         $this->category = new Category($item->category);
 
-        $this->venue = empty($item->mekan) ? null : new Venue($item->venue);
+        $this->venue = empty($item->venue) ? null : new Venue($item->venue);
 
         // etiketler üzerinden dönelim
         foreach ($item->tags as $tag) {

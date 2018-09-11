@@ -10,6 +10,9 @@ class ServicesTest extends PHPUnit_Framework_TestCase
             (new \EtkinlikApi\Model\Config\EventsConfig())
                 ->addCategoryId(4015)
         );
+
+        $event = $client->event->getById(104289);
+
         $formats = $client->format->getItems();
         $categories = $client->category->getListe();
 
@@ -18,9 +21,10 @@ class ServicesTest extends PHPUnit_Framework_TestCase
                 ->addCityId(7)
         );
 
-        $this->assertEquals(122, $events->getMeta()->getTotalCount());
+        $this->assertEquals(161, $events->getMeta()->getTotalCount());
+        $this->assertEquals('kulis-sanat-tiyatrosu', $event->getVenue()->getSlug());
         $this->assertEquals(22, count($formats));
         $this->assertEquals(51, count($categories));
-        $this->assertEquals(819, $venues->getMeta()->getTotalCount());
+        $this->assertEquals(826, $venues->getMeta()->getTotalCount());
     }
 }
