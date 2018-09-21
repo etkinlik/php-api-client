@@ -23,6 +23,16 @@ class EventsConfig
     private $cityIds = [];
 
     /**
+     * @var string|null
+     */
+    private $startGte;
+
+    /**
+     * @var string|null
+     */
+    private $endLte;
+
+    /**
      * @var int
      */
     private $skip = 0;
@@ -50,6 +60,14 @@ class EventsConfig
 
         if ( ! empty($this->cityIds)) {
             $items['city_ids'] = implode(',', $this->cityIds);
+        }
+
+        if ( ! empty($this->startGte)) {
+            $items['start_gte'] = $this->startGte;
+        }
+
+        if ( ! empty($this->endLte)) {
+            $items['end_lte'] = $this->endLte;
         }
 
         return array_merge($items, [
@@ -98,6 +116,28 @@ class EventsConfig
     public function addCityId($id)
     {
         $this->cityIds[] = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param string $startGte
+     * @return $this
+     */
+    public function setStartGte($startGte)
+    {
+        $this->startGte = $startGte;
+
+        return $this;
+    }
+
+    /**
+     * @param string $endLte
+     * @return $this
+     */
+    public function setEndLte($endLte)
+    {
+        $this->endLte = $endLte;
 
         return $this;
     }

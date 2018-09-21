@@ -8,6 +8,8 @@ class ServicesTest extends PHPUnit_Framework_TestCase
 
         $events = $client->event->getItems(
             (new \EtkinlikApi\Model\Config\EventsConfig())
+                ->setStartGte(\Carbon\Carbon::now()->addDay()->toDateTimeString())
+                ->setEndLte(\Carbon\Carbon::now()->addDay(4)->toDateTimeString())
                 ->addCategoryId(4015)
         );
 

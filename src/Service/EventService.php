@@ -29,7 +29,9 @@ class EventService
     public function getItems($params = null)
     {
         // response alalım
-        $response = $this->client->api->get('/events', is_null($params) ? [] : $params->toArray());
+        $response = $this->client->api->get('/events',
+            $params instanceof EventsConfig ? $params->toArray() : []
+        );
 
         // durum koduna göre işlem yapalım
         switch ($response->getStatusCode()) {
