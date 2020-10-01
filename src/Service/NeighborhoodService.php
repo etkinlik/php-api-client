@@ -17,6 +17,7 @@ class NeighborhoodService
 
     /**
      * @param int $districtId
+     *
      * @return Neighborhood[]
      *
      * @throws BadRequestException
@@ -24,7 +25,7 @@ class NeighborhoodService
      * @throws UnknownException
      * @throws NotFoundException
      */
-    public function getListeByIlceId($districtId)
+    public function getItemsByDistrictId($districtId)
     {
         // response alalım
         $response = $this->client->api->get('/district/' . $districtId . '/neighborhoods');
@@ -34,15 +35,14 @@ class NeighborhoodService
 
             case 200:
 
-                /** @var Neighborhood[] $semtler */
-                $semtler = [];
+                $items = [];
 
                 // body üzerinde dönelim
                 foreach (json_decode($response->getBody()->getContents()) as $item) {
-                    $semtler[] = new Neighborhood($item);
+                    $items[] = new Neighborhood($item);
                 }
 
-                return $semtler;
+                return $items;
 
                 break;
 
@@ -55,5 +55,23 @@ class NeighborhoodService
         }
 
         throw new UnknownException($response);
+    }
+
+    /**
+     * @param int $districtId
+     *
+     * @return Neighborhood[]
+     *
+     * @throws BadRequestException
+     * @throws UnauthorizedException
+     * @throws UnknownException
+     * @throws NotFoundException
+     *
+     * @deprecated use getItemsByDistrictId
+     *
+     */
+    public function getListeByIlceId($districtId)
+    {
+        return $this->getItemsByDistrictId($districtId);
     }
 }

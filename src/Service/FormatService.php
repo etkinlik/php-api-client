@@ -28,15 +28,14 @@ class FormatService
 
             case 200:
 
-                /** @var Format[] $turler */
-                $turler = [];
+                $items = [];
 
                 // body üzerinde dönelim
                 foreach (json_decode($response->getBody()->getContents()) as $item) {
-                    $turler[] = new Format($item);
+                    $items[] = new Format($item);
                 }
 
-                return $turler;
+                return $items;
 
             case 401:
                 throw new UnauthorizedException(json_decode($response->getBody()->getContents())->message);

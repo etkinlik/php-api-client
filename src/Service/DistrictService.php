@@ -17,13 +17,14 @@ class DistrictService
 
     /**
      * @param int $cityId
+     *
      * @return District[]
      *
      * @throws BadRequestException
      * @throws NotFoundException
      * @throws UnauthorizedException
      */
-    public function getListeBySehirId($cityId)
+    public function getItemsByCityId($cityId)
     {
         // response alalım
         $response = $this->client->api->get('/cities/' . $cityId . '/districts');
@@ -33,17 +34,14 @@ class DistrictService
 
             case 200:
 
-                /** @var District[] $ilceler */
-                $ilceler = [];
+                $items = [];
 
                 // body üzerinde dönelim
                 foreach (json_decode($response->getBody()->getContents()) as $item) {
-                    $ilceler[] = new District($item);
+                    $items[] = new District($item);
                 }
 
-                return $ilceler;
-
-                break;
+                return $items;
 
             case 400:
                 throw new BadRequestException(json_decode($response->getBody()->getContents())->message);
@@ -54,5 +52,21 @@ class DistrictService
         }
 
         throw new UnknownException($response);
+    }
+
+    /**
+     * @param int $cityId
+     *
+     * @return District[]
+     *
+     * @throws BadRequestException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
+     *
+     * @deprecated use getItemsByCityId
+     */
+    public function getListeBySehirId($cityId)
+    {
+        return $this->getItemsByCityId($cityId);
     }
 }

@@ -15,10 +15,11 @@ class CityService
 
     /**
      * @return City[]
+     *
      * @throws UnauthorizedException
      * @throws UnknownException
      */
-    public function getListe()
+    public function getItems()
     {
         // response alalım
         $response = $this->client->api->get('/cities');
@@ -28,23 +29,32 @@ class CityService
 
             case 200:
 
-                /** @var City[] $sehirler */
-                $sehirler = [];
+                $items = [];
 
                 // body üzerinde dönelim
                 foreach (json_decode($response->getBody()->getContents()) as $item) {
-                    $sehirler[] = new City($item);
+                    $items[] = new City($item);
                 }
 
-                return $sehirler;
-
-                break;
+                return $items;
 
             case 401:
                 throw new UnauthorizedException(json_decode($response->getBody()->getContents())->message);
-                break;
-            default:
-                throw new UnknownException($response);
         }
+
+        throw new UnknownException($response);
+    }
+
+    /**
+     * @return City[]
+     *
+     * @throws UnauthorizedException
+     * @throws UnknownException
+     *
+     * @deprecated use getItems
+     */
+    public function getListe()
+    {
+        return $this->getItems();
     }
 }
