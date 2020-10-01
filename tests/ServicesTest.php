@@ -25,8 +25,8 @@ class ServicesTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(161, $events->getMeta()->getTotalCount());
         $this->assertEquals('kulis-sanat-tiyatrosu', $event->getVenue()->getSlug());
-        $this->assertEquals(22, count($formats));
-        $this->assertEquals(51, count($categories));
+        $this->assertCount(22, $formats);
+        $this->assertCount(51, $categories);
         $this->assertEquals(826, $venues->getMeta()->getTotalCount());
     }
 }
