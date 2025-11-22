@@ -25,7 +25,7 @@ class ApiService
             'timout'      => 5
         ]);
 
-        return $client->get('https://backend.etkinlik.io/api/v2' . $endpoint, [
+        return $client->get('https://etkinlik.io/api/v2' . $endpoint, [
             'headers' => [
                 'X-Etkinlik-Token' => $this->client->token
             ],
